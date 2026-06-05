@@ -36,6 +36,17 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
+       # ... (Login to Azure ACR step is here) ...
+
+      # NEW MLOPS STEP: Bake a fresh AI Brain!
+      - name: Train the ML Model
+        run: python train.py
+
+      # THE DELIVERY TRUCK (CD)
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        # ... (rest of the code stays the same) ...
+
       # 3. THE DELIVERY TRUCK (CD)
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
